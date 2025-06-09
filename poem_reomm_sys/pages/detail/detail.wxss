@@ -1,0 +1,285 @@
+/* pages/detail/detail.wxss */
+.container {
+  padding: 30rpx;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.poetry-detail {
+  background: #fff;
+  padding: 40rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.author {
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+  display: block;
+  margin-bottom: 40rpx;
+}
+
+.content {
+  font-size: 32rpx;
+  color: #444;
+  line-height: 1.8;
+  display: block;
+  margin-bottom: 40rpx;
+}
+
+.annotation {
+  background: rgba(76, 175, 80, 0.05);
+  padding: 20rpx;
+  border-radius: 8rpx;
+  height: 300rpx;
+  margin-top: 20rpx;
+}
+
+.annotation-title {
+  font-size: 28rpx;
+  color: #4CAF50;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+  padding-left: 10rpx;
+}
+
+.annotation-content-wrapper {
+  height: calc(100% - 40rpx);
+  overflow-y: auto;
+}
+
+.annotation-content {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  padding: 10rpx;
+  display: block;
+}
+
+.annotation-content-wrapper::-webkit-scrollbar {
+  width: 4rpx;
+  background-color: transparent;
+}
+
+.annotation-content-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(76, 175, 80, 0.3);
+  border-radius: 2rpx;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 40rpx 0;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.generate-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.generate-button image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.generate-button text {
+  font-size: 24rpx;
+  color: #4CAF50;
+}
+
+.result-area {
+  margin-top: 40rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.result-title {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.generated-image {
+  width: 100%;
+  border-radius: 8rpx;
+}
+
+.download-btn {
+  margin-top: 30rpx;
+  background: #4CAF50;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.poetry-swiper {
+  height: 100vh;
+  width: 100%;
+}
+
+.scroll-container {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.page-container {
+  height: 100vh;
+  position: relative;
+}
+
+.swipe-guide {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30rpx 40rpx;
+  border-radius: 20rpx;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.swipe-guide.show {
+  opacity: 1;
+}
+
+.guide-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.guide-text {
+  color: white;
+  font-size: 32rpx;
+  margin: 0 30rpx;
+}
+
+.arrow-icon {
+  width: 48rpx;
+  height: 48rpx;
+  animation: bounce 1.5s infinite;
+}
+
+.arrow-icon.left {
+  animation-delay: 0.2s;
+}
+
+.arrow-icon.right {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10rpx); }
+}
+
+.close-hint {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 24rpx;
+}
+
+.loading-more {
+  position: fixed;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 16rpx 32rpx;
+  border-radius: 32rpx;
+  color: white;
+}
+
+.loading-spinner {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  border: 4rpx solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.poetry-title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.meta-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+.poetry-meta {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 40rpx;
+}
+
+.poetry-content {
+  font-size: 32rpx;
+  line-height: 1.8;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.audio-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.audio-btn {
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #4CAF50;
+  color: white;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}

@@ -1,0 +1,81 @@
+<view class="page-container">
+  <image class="bg-image" src="/images/detailbackend.png" mode="aspectFill"></image>
+  
+  <!-- 筛选器区域 -->
+  <view class="filter-section">
+    <view class="filter-row">
+      <view class="filter-item" bindtap="openPicker" data-type="grade">
+        <text class="filter-label">{{selectedGrade ? selectedGrade : '选择年级'}}</text>
+        <image class="arrow-icon"></image>
+      </view>
+      <view class="filter-item" bindtap="openPicker" data-type="dynasty">
+        <text class="filter-label">{{selectedDynasty ? selectedDynasty : '选择朝代'}}</text>
+        <image class="arrow-icon"></image>
+      </view>
+      <view class="filter-item" bindtap="openPicker" data-type="author">
+        <text class="filter-label">{{selectedAuthor ? selectedAuthor : '选择作者'}}</text>
+        <image class="arrow-icon"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 诗词列表区域 -->
+  <scroll-view 
+    class="poetry-scroll" 
+    scroll-y 
+    show-scrollbar="{{false}}"
+    enhanced
+    bounces="{{true}}"
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{isRefreshing}}"
+    bindrefresherrefresh="onRefresh"
+    bindscrolltolower="onLoadMore">
+    
+    <view wx:if="{{poetryList.length === 0}}" class="empty-state">
+      <text>暂无符合条件的诗词</text>
+    </view>
+    
+    <view class="poetry-item" 
+          wx:for="{{poetryList}}" 
+          wx:key="index" 
+          bindtap="navigateToDetail" 
+          data-index="{{index}}">
+      <view class="poetry-content-wrap">
+        <view class="poetry-header">
+          <text class="poetry-title">{{item.title}}</text>
+          <text class="poetry-meta">[{{item.dynasty}}] {{item.author}}</text>
+        </view>
+        <text class="poetry-content single-line">{{item.content}}</text>
+      </view>
+    </view>
+
+    <view class="loading-more" wx:if="{{isLoadingMore}}">
+      <text>加载更多...</text>
+    </view>
+  </scroll-view>
+
+  <!-- 选择器弹窗 -->
+  <view class="picker-popup {{showPicker ? 'show' : ''}}">
+    <view class="picker-mask" bindtap="closePicker"></view>
+    <view class="picker-content">
+      <view class="picker-header">
+        <text>{{pickerTitle}}</text>
+        <view class="picker-close" bindtap="closePicker">×</view>
+      </view>
+      <picker-view 
+        value="{{pickerValue}}" 
+        bindchange="onPickerChange" 
+        class="picker-view">
+        <picker-view-column>
+          <view wx:for="{{pickerItems}}" 
+                wx:key="id" 
+                class="picker-item">{{item.name}}</view>
+        </picker-view-column>
+      </picker-view>
+      <view class="picker-footer">
+        <button class="picker-btn cancel" bindtap="closePicker">取消</button>
+        <button class="picker-btn confirm" bindtap="confirmPicker">确定</button>
+      </view>
+    </view>
+  </view>
+</view> 

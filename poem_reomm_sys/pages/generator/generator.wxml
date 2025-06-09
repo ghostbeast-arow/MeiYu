@@ -1,0 +1,43 @@
+<!--pages/generator/generator.wxml-->
+<view class="container">
+  <image class="bg-image" src="/images/indexbackend.png" mode="aspectFill"></image>
+  <image class="watermark" src="/images/index1.png" mode="aspectFit"></image>
+
+  <view class="generate-result">
+    <view class="result-header">
+      <text class="result-title">{{generationType}}生成结果</text>
+      <text class="poetry-info">{{poetry.title}} - {{poetry.author}}</text>
+    </view>
+
+    <!-- 加载动画 -->
+    <view class="loading" wx:if="{{isGenerating}}">
+      <view class="loading-spinner"></view>
+      <text>正在生成{{generationType}}...</text>
+    </view>
+
+    <!-- 生成结果展示 -->
+    <view class="result-content" wx:if="{{!isGenerating && generatedContent}}">
+      <image wx:if="{{type === 'image'}}" 
+             src="{{generatedContent}}" 
+             mode="widthFix" 
+             class="result-image"
+             show-menu-by-longpress/>
+      <audio wx:if="{{type === 'audio'}}" 
+             src="{{generatedContent}}" 
+             id="myAudio"
+             controls/>
+      <video wx:if="{{type === 'video'}}" 
+             src="{{generatedContent}}" 
+             controls
+             object-fit="cover"/>
+      <button class="download-btn" bindtap="handleDownload">
+        下载{{generationType}}
+      </button>
+    </view>
+
+    <!-- 错误提示 -->
+    <view class="error-message" wx:if="{{error}}">
+      {{error}}
+    </view>
+  </view>
+</view>

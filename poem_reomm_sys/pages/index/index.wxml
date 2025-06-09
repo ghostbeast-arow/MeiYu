@@ -1,0 +1,108 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <!-- 登录界面 -->
+    <view class="login-container" wx:if="{{!isLoggedIn}}">
+      <image class="bg-image" src="/images/log.png" mode="aspectFill"></image>
+      <view class="login-content">
+        <image class="app-logo"></image>
+        <text class="app-title">趣味古诗词</text>
+        <text class="app-desc">传承传统文化，品味诗词之美</text>
+        <button class="login-btn" bindtap="handleLogin">
+          <image class="wechat-icon"></image>
+          微信一键登录
+        </button>
+      </view>
+    </view>
+
+    <!-- 主界面内容 -->
+    <view class="main-container" wx:else>
+      <image class="bg-image" src="/images/indexbackend.png" mode="aspectFill"></image>
+      <image class="watermark" src="/images/index1.png" mode="aspectFit"></image>
+      
+      <!-- 功能按钮区 -->
+      <view class="function-area">
+        <view class="intro-button" bindtap="showIntroduction">
+          <text>AI诗古词小程序的自述</text>
+        </view>
+        <view class="intro-button" bindtap="navigateToDatabase">
+          <image class="button-icon"></image>
+          <text>诗词数据库</text>
+        </view>
+        <view class="intro-button" bindtap="navigateToCustom">
+          <image class="button-icon"></image>
+          <text>自定义诗词</text>
+        </view>
+      </view>
+
+      <!-- 自述浮窗 -->
+      <view class="intro-modal {{showIntro ? 'show' : ''}}">
+        <view class="modal-mask" bindtap="closeIntroduction"></view>
+        <view class="modal-content">
+          <swiper class="intro-swiper" bindchange="handleIntroSwiperChange" 
+                 current="{{currentIntroPage}}">
+            <swiper-item wx:for="{{introPages}}" wx:key="index">
+              <view class="intro-page">
+                <text class="intro-text">{{item}}</text>
+              </view>
+            </swiper-item>
+          </swiper>
+          <view class="swiper-dots">
+            <view class="dot {{currentIntroPage === index ? 'active' : ''}}" 
+                  wx:for="{{introPages}}" 
+                  wx:key="index"></view>
+          </view>
+          <view class="swipe-hint" wx:if="{{currentIntroPage < introPages.length - 1}}">
+            左滑查看更多 →
+          </view>
+          <view class="close-btn" bindtap="closeIntroduction">
+            <text>我知道啦</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Popular Poetry List -->
+      <view class="poetry-list">
+        <view class="poetry-list-header">
+          <text class="poetry-list-title">热门诗词推荐</text>
+          <text class="update-time">每日更新</text>
+        </view>
+
+        <!-- 诗词列表 -->
+        <scroll-view class="poetry-scroll" 
+                     scroll-y 
+                     show-scrollbar="{{false}}"
+                     enhanced
+                     bounces="{{true}}"
+                     refresher-enabled="{{true}}"
+                     refresher-triggered="{{isRefreshing}}"
+                     bindrefresherrefresh="onRefresh">
+          <view wx:if="{{hotPoetryList.length === 0}}" 
+                class="empty-state">
+            <text>暂无热门诗词</text>
+          </view>
+          
+          <view class="poetry-item" 
+                wx:for="{{hotPoetryList}}" 
+                wx:key="index" 
+                bindtap="navigateToDetail" 
+                data-index="{{index}}">
+            <view class="rank-badge {{index < 3 ? 'top-' + (index + 1) : ''}}">
+              {{index + 1}}
+            </view>
+            <view class="poetry-content-wrap">
+              <text class="poetry-title">{{item.title}}</text>
+              <text class="poetry-author">{{item.author}}</text>
+              <text class="poetry-content">{{item.preview}}</text>
+              <view class="poetry-stats">
+                <view class="stat-item">
+                  <image class="stat-icon"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

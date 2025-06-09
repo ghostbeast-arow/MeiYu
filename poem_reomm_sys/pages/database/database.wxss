@@ -1,0 +1,302 @@
+/* 页面容器 */
+.page-container {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: transparent;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* 内容容器 */
+.content-container {
+  position: relative;
+  z-index: 1;
+  padding: 20rpx;
+}
+
+/* 搜索栏样式 */
+.search-bar {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 诗词列表容器 */
+.poetry-list-container {
+  margin-top: 20rpx;
+}
+
+/* 诗词卡片样式 */
+.poetry-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 保持其他样式不变，但修改背景色为半透明 */
+.filter-panel .filter-content {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 确保加载和错误状态显示在内容上方 */
+.loading-state,
+.error-state,
+.empty-state {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin: 20rpx 0;
+}
+
+/* 诗���网格布局 */
+.poetry-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20rpx;
+  padding: 10rpx;
+}
+
+@media screen and (min-width: 768px) {
+  .poetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.filter-section {
+  padding: 20rpx 30rpx;
+  background: #fff;
+  margin: 0 30rpx 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  width: auto;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  width: 100%;
+}
+
+.filter-item {
+  flex: 1;
+  height: 80rpx;
+  padding: 0 20rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.filter-label {
+  font-size: 28rpx;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.arrow-icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.poetry-scroll {
+  height: calc(100vh - 120rpx);
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.poetry-item {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.poetry-item:active {
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.poetry-content-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  width: 100%;
+}
+
+.poetry-header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.poetry-title {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #333;
+  margin-right: 16rpx;
+}
+
+.poetry-meta {
+  font-size: 28rpx;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.poetry-content {
+  font-size: 30rpx;
+  color: #444;
+  line-height: 1.6;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* 美化滚动条 */
+.poetry-scroll::-webkit-scrollbar {
+  width: 6rpx;
+  background-color: transparent;
+}
+
+.poetry-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3rpx;
+}
+
+/* 空状态样式优化 */
+.empty-state {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16rpx;
+  margin: 20rpx;
+}
+
+/* 加载更多提示样式 */
+.loading-more {
+  text-align: center;
+  padding: 20rpx 0;
+  color: #999;
+  font-size: 24rpx;
+}
+
+/* 选择器弹窗样式 */
+.picker-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.picker-popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.picker-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.picker-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.picker-popup.show .picker-content {
+  transform: translateY(0);
+}
+
+.picker-header {
+  padding: 20rpx;
+  text-align: center;
+  position: relative;
+  border-bottom: 1rpx solid #eee;
+}
+
+.picker-close {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  font-size: 32rpx;
+  color: #999;
+}
+
+.picker-view {
+  height: 400rpx;
+}
+
+.picker-item {
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.picker-footer {
+  display: flex;
+  padding: 20rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.picker-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  margin: 0 10rpx;
+}
+
+.picker-btn.cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.picker-btn.confirm {
+  background: #4CAF50;
+  color: #fff;
+}
+ 

@@ -1,0 +1,36 @@
+{
+  "compileType": "miniprogram",
+  "libVersion": "trial",
+  "setting": {
+    "coverView": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "showShadowRootInWxmlPanel": true,
+    "packNpmRelationList": [],
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "ignoreUploadUnusedFiles": true
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "auto",
+    "tabSize": 2
+  },
+  "testRoot": "minitest/",
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "/minitest",
+        "type": "folder"
+      }
+    ],
+    "include": []
+  },
+  "appid": "wx0c4e37d22ba9e173",
+  "projectname": "你的项目名称"
+}

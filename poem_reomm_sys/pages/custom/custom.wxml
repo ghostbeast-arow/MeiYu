@@ -1,0 +1,51 @@
+<view class="page-container">
+  <image class="bg-image" src="/images/detailbackend.png" mode="aspectFill"></image>
+  
+  <view class="content-wrap">
+    <!-- 输入区域 -->
+    <view class="input-section">
+      <input class="title-input" 
+             placeholder="请输入诗词标题" 
+             value="{{title}}" 
+             bindinput="handleTitleInput" />
+      <textarea class="content-input" 
+                placeholder="请输入诗词内容" 
+                value="{{content}}" 
+                bindinput="handleContentInput" />
+    </view>
+
+    <!-- 生成按钮区域 -->
+    <view class="action-buttons">
+      <view class="generate-button" bindtap="handleGenerate" data-type="image">
+        <image src="/images/picture.png"></image>
+        <text>生成图片</text>
+      </view>
+      <view class="generate-button" bindtap="handleGenerate" data-type="audio">
+        <image src="/images/music.png"></image>
+        <text>生成音频</text>
+      </view>
+      <view class="generate-button" bindtap="handleGenerate" data-type="video">
+        <image src="/images/video.png"></image>
+        <text>生成视频</text>
+      </view>
+    </view>
+
+    <!-- 生成结果展示区域 -->
+    <view class="result-area" wx:if="{{generatedContent}}">
+      <view class="result-title">生成结果</view>
+      <image wx:if="{{contentType === 'image'}}" 
+             src="{{generatedContent}}" 
+             mode="widthFix" 
+             class="generated-image"></image>
+      <view wx:if="{{contentType === 'audio'}}" class="audio-player">
+        <button class="audio-btn" bindtap="handleAudioPlay">
+          {{isPlaying ? '暂停' : '播放'}}
+        </button>
+      </view>
+      <video wx:if="{{contentType === 'video'}}" 
+             src="{{generatedContent}}" 
+             controls></video>
+      <button class="download-btn" bindtap="handleDownload">下载{{contentTypeText}}</button>
+    </view>
+  </view>
+</view> 

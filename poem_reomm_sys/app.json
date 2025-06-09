@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/database/database",
+    "pages/custom/custom"
+  ],
+  "permission": {
+    "scope.userInfo": {
+      "desc": "你的用户信息将用于小程序用户数据的区分"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTitleText": "趣味古诗词",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "usingComponents": {},
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  }
+}
